@@ -17,6 +17,7 @@ RUN \
 		        locales \
 			unoconv \
 			gcc \
+			imagemagick \
 			supervisor \
 			golang-go && \
 		go install github.com/HeavyHorst/unoconv-api && \

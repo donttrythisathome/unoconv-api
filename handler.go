@@ -74,7 +74,11 @@ func unoconvHandler(ctx context.Context, w http.ResponseWriter, r *http.Request)
 
 	//Run unoconv to convert the file
 	//unoconv's stdout is plugged directly to the httpResponseWriter
-	err = uno.convert(filename, xmux.Param(ctx, "filetype"), w)
+	if ".pptx" == filepath.Ext(handler.Filename) && "png" == xmux.Param(ctx, "filetype") {
+		err = im.ConvertPptxToPng(filename, w)
+	} else {
+		err = uno.convert(filename, xmux.Param(ctx, "filetype"), w)
+	}
 	if err != nil {
 		l.Error(err)
 		return

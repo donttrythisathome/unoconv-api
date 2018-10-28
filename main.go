@@ -14,6 +14,7 @@ var (
 	cfg config
 	mw  middleware
 	uno *unoconv
+	im  *imageMagic
 )
 
 func init() {
@@ -21,7 +22,7 @@ func init() {
 	cfg.initDefaultConfig()
 
 	uno = initUnoconv()
-
+	im = initConvert()
 	//plug the xlog handler's input to Go's default logger
 	log.SetFlags(0)
 	xlogger := xlog.New(cfg.loggerConfig)
