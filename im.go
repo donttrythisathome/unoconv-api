@@ -48,7 +48,7 @@ func initConvert() *imageMagic {
 
 				//convert to png
 				convertedName := fmt.Sprintf("%d_%d.png", time.Now().Unix(), rand.Intn(99999))
-				cmd = exec.Command("convert", tempFileName, "/files/"+"/%04d_"+convertedName)
+				cmd = exec.Command("convert", tempFileName, os.TempDir()+"/%04d_"+convertedName)
 				err = cmd.Run()
 				if err != nil {
 					data.errChan <- err
@@ -56,7 +56,7 @@ func initConvert() *imageMagic {
 				os.Remove(tempFileName)
 
 				// find and format converted files
-				files, err := filepath.Glob("/files" + "/*" + convertedName)
+				files, err := filepath.Glob(os.TempDir() + "/*" + convertedName)
 				if err != nil {
 					data.errChan <- err
 				}
