@@ -26,11 +26,6 @@ RUN \
         apt-get clean && \
 	    rm -rf /var/lib/apt/lists/
 
-# Set the locale
-RUN locale-gen de_DE.UTF-8  
-ENV LANG de_DE.UTF-8  
-ENV LANGUAGE de_DE:de  
-ENV LC_ALL de_DE.UTF-8  
 
 COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
